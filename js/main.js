@@ -20,7 +20,12 @@ function createGrid() {
   for (i = 0; i < sockets.length; i++) {
     let newSocket = document.createElement('div');
     newSocket.setAttribute('id', i.toString());
+    newSocket.addEventListener('click', selectSocket);
     grid.appendChild(newSocket);
-    console.log(i);
   };
 };
+
+function selectSocket(evt) {
+  let socketNo = Number(evt.target.getAttribute('id'));
+  console.log(socketNo);
+}
