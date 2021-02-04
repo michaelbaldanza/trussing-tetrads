@@ -1,7 +1,9 @@
 /*----- constants -----*/
+const sockets = new Array(42);
+const columns = [];
 
 /*----- app's state (variables) -----*/
-let sockets, turn;
+let turn;
 
 /*----- cached element references -----*/
 
@@ -12,7 +14,7 @@ const socketEls = document.getElementsByClassName('socket');
 init();
 
 function init() {
-  sockets = new Array(42);
+  erectColumns();
   createGrid();
   turn = -1;
 }
@@ -46,4 +48,18 @@ function render() {
       socketEls[i].style.backgroundColor = 'orange';
     }
   }
+}
+
+function erectColumns() {
+  const bases = new Array(7);
+  for (i = 0; i < bases.length; i++) {
+    bases[i] = sockets.length - i - 1;
+  }
+  bases.forEach(function (base) {
+    let column = [];
+    for (i = base; i >= 0; i -= 7) {
+      column.push(i);
+    }
+    columns.push(column);
+  });
 }
