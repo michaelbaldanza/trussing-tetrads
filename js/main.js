@@ -31,12 +31,19 @@ function createGrid() {
 
 function selectSocket(evt) {
   let socketNo = Number(evt.target.getAttribute('id'));
-  if (sockets[socketNo]) {
-    return;
+  console.log(columns);
+  for (i = 0; i < columns.length; i++) {
+    if (columns[i].indexOf(socketNo) !== -1) {
+      for (j = 0; j < columns[i].length; j++) {
+        if (!sockets[columns[i][j]]) {
+          sockets[columns[i][j]] = turn;
+          render();
+          turn *= -1;
+          return;
+        }
+      }
+    }
   }
-  sockets[socketNo] = turn;
-  render();
-  turn *= -1;
 }
 
 function render() {
