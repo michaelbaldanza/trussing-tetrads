@@ -76,19 +76,13 @@ function erectColumns() {
 function getWinner() {
   let bound = 0;
   for (i = sockets.length - 1; i >= 0; i--) {
-    if (
-      sockets[i] &&
-      i > columns[6][bound] + 2 &&
-      sockets[i] === sockets[i - 3] &&
-      sockets[i] === sockets[i - 2] &&
-      sockets[i] === sockets[i - 1]
-    ) {
-      console.log(i);
-      console.log(`${turn} wins!`)
-      winner = turn;
+    if (sockets[i] && i > columns[6][bound] + 2) {
+      let counter = 0;
+      for (j = 3; j >= 0; j--) {
+        if (sockets[i - j] === sockets[i]) counter ++;
+      }
+      if (counter === 4) return winner = turn;
     }
-    if (columns[6][bound] === i) {
-      bound += 1;
-    }
+    if (columns[6][bound] === i) bound += 1;
   }
 }
