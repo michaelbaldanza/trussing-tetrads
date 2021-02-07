@@ -34,6 +34,7 @@ function createGrid() {
 };
 
 function selectSocket(evt) {
+  console.log(victory.winner);
   if (victory.winner) return;
   let socketNo = Number(evt.target.getAttribute('id'));
   for (i = 0; i < columns.length; i++) {
@@ -79,13 +80,27 @@ function erectColumns() {
 function getWinner() {
   let bound = 0;
   for (i = sockets.length - 1; i >= 0; i--) {
+    // check winner horizontally
     if (sockets[i] && i > columns[6][bound] + 2) {
       let counter = 0;
       for (j = 3; j >= 0; j--) {
         if (sockets[i - j] === sockets[i]) counter ++;
+        console.log(counter);
       }
       if (counter === 4) return victory.winner = turn;
     }
     if (columns[6][bound] === i) bound += 1;
+    // check winner vertically
+    for (k = 0; k < columns.length; k++) {
+      if (sockets[i] && columns[k].indexOf(i) ) {
+        let verticalCounter = 0;
+        for (l = 0; l < columns[k].length; l++) {
+          if (sockets[i] === sockets[columns[k][l]]) {
+            verticalCounter ++;
+          }
+        }
+        if (verticalCounter === 4) return victory.winner = turn;
+      }
+    }
   }
 }
