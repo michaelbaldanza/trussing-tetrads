@@ -3,7 +3,7 @@ const sockets = new Array(42);
 const columns = [];
 
 /*----- app's state (variables) -----*/
-let turn, winner;
+let turn, victory;
 
 /*----- cached element references -----*/
 
@@ -17,7 +17,10 @@ function init() {
   erectColumns();
   createGrid();
   turn = -1;
-  winner = null;
+  victory = {
+    winner: null,
+    vicInds: []
+  };
 }
 
 function createGrid() {
@@ -31,7 +34,7 @@ function createGrid() {
 };
 
 function selectSocket(evt) {
-  if (winner) return;
+  if (victory.winner) return;
   let socketNo = Number(evt.target.getAttribute('id'));
   for (i = 0; i < columns.length; i++) {
     if (columns[i].indexOf(socketNo) !== -1) {
@@ -81,7 +84,7 @@ function getWinner() {
       for (j = 3; j >= 0; j--) {
         if (sockets[i - j] === sockets[i]) counter ++;
       }
-      if (counter === 4) return winner = turn;
+      if (counter === 4) return victory.winner = turn;
     }
     if (columns[6][bound] === i) bound += 1;
   }
