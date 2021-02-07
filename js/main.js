@@ -98,8 +98,11 @@ function getWinner() {
           if (sockets[i] === sockets[columns[k][l]]) {
             verticalCounter ++;
           }
+          if (sockets[i] !== sockets[columns[k][l]]) {
+            verticalCounter = 0;
+          }
+          if (verticalCounter === 4) return victory.winner = turn;
         }
-        if (verticalCounter === 4) return victory.winner = turn;
       }
     }
   }
