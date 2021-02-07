@@ -85,7 +85,6 @@ function getWinner() {
       let counter = 0;
       for (j = 3; j >= 0; j--) {
         if (sockets[i - j] === sockets[i]) counter ++;
-        console.log(counter);
       }
       if (counter === 4) return victory.winner = turn;
     }
@@ -104,6 +103,15 @@ function getWinner() {
           if (verticalCounter === 4) return victory.winner = turn;
         }
       }
+    }
+    // check winner on left diagonal
+    const leftDiag = [24, 16, 8];
+    let diagCounter = 0;
+    for (m = 0; m < leftDiag.length; m++) {
+      if (sockets[i] && sockets[i] === sockets[i - leftDiag[m]]) {
+        diagCounter ++;
+      }
+      if (diagCounter === 3) return victory.winner = turn;
     }
   }
 }
