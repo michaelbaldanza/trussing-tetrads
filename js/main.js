@@ -111,7 +111,19 @@ function getWinner() {
       if (sockets[i] && sockets[i] === sockets[i - leftDiag[m]]) {
         diagCounter ++;
       }
+      console.log(`diagCounter = ${diagCounter}`);
       if (diagCounter === 3) return victory.winner = turn;
+    }
+    let rightDiagCounter = 0;
+    if (sockets[i]) {
+      const rightDiag = [18, 12, 6];
+      for (n = 0; n < rightDiag.length; n++) {
+        if (sockets[i] === sockets[i - rightDiag[n]]) {
+          rightDiagCounter ++;
+        }
+        console.log(`rightDiagCounter = ${rightDiagCounter}`);
+        if (rightDiagCounter === 3) return victory.winner = turn;
+      }
     }
   }
 }
