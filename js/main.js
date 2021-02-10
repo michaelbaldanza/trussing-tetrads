@@ -72,40 +72,31 @@ function getWinner() {
   let bound = sockets.length - 6;
   for (i = sockets.length - 1; i >= 0; i--) {
     if (sockets[i]) {
-    // check winner horizontally
-    if (i > bound + 2) {
-      let counter = 0;
-      for (j = 3; j >= 0; j--) {
-        if (sockets[i - j] === sockets[i]) counter ++;
+      // check winner horizontally
+      if (i > bound + 2) {
+        const horizontal = [3, 2, 1];
+        checkTetrad(i, horizontal);
       }
-      if (counter === 4) return victory.winner = turn;
+      // check winner vertically
+      const vertical = [21, 14, 7];
+      checkTetrad(i, vertical);
+      // check winner on left diagonal
+      const leftDiagonal = [24, 16, 8];
+      checkTetrad(i, leftDiagonal);
+      // check winner on right diagonal
+      const rightDiagonal = [18, 12, 6];
+      checkTetrad(i, rightDiagonal);
+      if (bound === i) bound -= 7;
     }
-    // check winner vertically
-    for (k = 0; k < columns.length; k++) {
-      if (columns[k].indexOf(i) ) {
-        let verticalCounter = 0;
-        for (l = 0; l < columns[k].length; l++) {
-          if (sockets[i] === sockets[columns[k][l]]) verticalCounter ++;
-          if (sockets[i] !== sockets[columns[k][l]]) verticalCounter = 0;
-          if (verticalCounter === 4) return victory.winner = turn;
-        }
-      }
+  }
+}
+
+function checkTetrad(idx, tetrad) {
+  let counter = 0;
+  for (q = 0; q < tetrad.length; q++) {
+    if (sockets[idx] === sockets[idx - tetrad[q]]) {
+      counter++;
+      if (counter === 3) return victory.winner = turn;
     }
-    // check winner on left diagonal
-    const leftDiag = [24, 16, 8];
-    let diagCounter = 0;
-    for (m = 0; m < leftDiag.length; m++) {
-      if (sockets[i] === sockets[i - leftDiag[m]]) diagCounter ++;     
-      if (diagCounter === 3) return victory.winner = turn;
-    }
-    // check winner on right diagonal
-    let rightDiagCounter = 0;
-      const rightDiag = [18, 12, 6];
-      for (n = 0; n < rightDiag.length; n++) {
-        if (sockets[i] === sockets[i - rightDiag[n]]) rightDiagCounter ++;
-        if (rightDiagCounter === 3) return victory.winner = turn;
-      }
-    }
-    if (bound === i) bound -= 7;
   }
 }
