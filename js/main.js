@@ -69,11 +69,11 @@ function erectColumns() {
 }
 
 function getWinner() {
-  let bound = 0;
+  let bound = sockets.length - 6;
   for (i = sockets.length - 1; i >= 0; i--) {
     if (sockets[i]) {
     // check winner horizontally
-    if (i > columns[6][bound] + 2) {
+    if (i > bound + 2) {
       let counter = 0;
       for (j = 3; j >= 0; j--) {
         if (sockets[i - j] === sockets[i]) counter ++;
@@ -85,12 +85,8 @@ function getWinner() {
       if (columns[k].indexOf(i) ) {
         let verticalCounter = 0;
         for (l = 0; l < columns[k].length; l++) {
-          if (sockets[i] === sockets[columns[k][l]]) {
-            verticalCounter ++;
-          }
-          if (sockets[i] !== sockets[columns[k][l]]) {
-            verticalCounter = 0;
-          }
+          if (sockets[i] === sockets[columns[k][l]]) verticalCounter ++;
+          if (sockets[i] !== sockets[columns[k][l]]) verticalCounter = 0;
           if (verticalCounter === 4) return victory.winner = turn;
         }
       }
@@ -99,23 +95,17 @@ function getWinner() {
     const leftDiag = [24, 16, 8];
     let diagCounter = 0;
     for (m = 0; m < leftDiag.length; m++) {
-      if (sockets[i] === sockets[i - leftDiag[m]]) {
-        diagCounter ++;
-      }
-      console.log(`diagCounter = ${diagCounter}`);
+      if (sockets[i] === sockets[i - leftDiag[m]]) diagCounter ++;     
       if (diagCounter === 3) return victory.winner = turn;
     }
     // check winner on right diagonal
     let rightDiagCounter = 0;
       const rightDiag = [18, 12, 6];
       for (n = 0; n < rightDiag.length; n++) {
-        if (sockets[i] === sockets[i - rightDiag[n]]) {
-          rightDiagCounter ++;
-        }
-        console.log(`rightDiagCounter = ${rightDiagCounter}`);
+        if (sockets[i] === sockets[i - rightDiag[n]]) rightDiagCounter ++;
         if (rightDiagCounter === 3) return victory.winner = turn;
       }
     }
-    if (columns[6][bound] === i) bound += 1;
+    if (bound === i) bound -= 7;
   }
 }
