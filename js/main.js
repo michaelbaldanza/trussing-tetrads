@@ -2,25 +2,32 @@
 const sockets = new Array(42);
 const columns = [];
 
-/*----- app's state (variables) -----*/
+/*----- app's state -----*/
 let turn, victory;
 
 /*----- cached element references -----*/
-
 const grid = document.getElementById('grid');
 const socketEls = document.getElementsByClassName('socket');
+const resetButton = document.querySelector('button');
 
 /*----- functions -----*/
+initView();
 init();
 
-function init() {
-  erectColumns();
+function initView() {
   createGrid();
+  resetButton.addEventListener('click', reset);
+}
+
+function init() {
+  for (i = 0; i < sockets.length; i++) sockets[i] = null;
+  erectColumns();
   turn = -1;
   victory = {
     winner: null,
     vicInds: []
   };
+  render();
 }
 
 function createGrid() {
@@ -55,6 +62,7 @@ function render() {
   for (i = 0; i < sockets.length; i++) {
     if (sockets[i] === -1) socketEls[i].style.backgroundColor = 'lime';
     if (sockets[i] === 1) socketEls[i].style.backgroundColor = 'orange';
+    if (!sockets[i]) socketEls[i].style.backgroundColor = '';
   }
 }
 
@@ -99,4 +107,8 @@ function checkTetrad(idx, tetrad) {
       if (counter === 3) return victory.winner = turn;
     }
   }
+}
+
+function reset() {
+  init();
 }

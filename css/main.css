@@ -1,24 +1,13 @@
 body {
-  /* padding: 1em 3em; */
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
 }
 
-
-header {
-  max-width: 80em;
-}
-h1 {
-  /* text-align: center; */
-}
-
 #grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  max-width: 80em;
-  /* margin: 0 auto; */
 }
 
 div {
