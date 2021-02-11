@@ -1,8 +1,8 @@
 body {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
+  justify-content: center;
 }
 
 #grid {
@@ -10,10 +10,40 @@ body {
   grid-template-columns: repeat(7, 1fr);
 }
 
+button {
+  font-size: 1rem;
+}
+
+h1 {
+  margin: none;
+  padding: none;
+  line-height: 0.5;
+  text-align: center;
+}
+
 div {
   min-width: 3em;
   min-height: 3em;
   margin: 0.5em;
-  border: solid black 1px;
+  border: solid black 0.01em;
   border-radius: 50%;
+}
+
+@media screen and (max-width: 480px) {
+  h1 span {
+    font-size: 1em;
+    display: table;
+  }
+
+  button {
+    font-size: 0.75rem;
+    margin-bottom: 0.75em;
+    margin-top: -0.5em;
+  }
+
+  div {
+    min-width: 2em;
+    min-height: 2em;
+    margin: 0.2em;
+  }
 }
