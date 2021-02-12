@@ -59,10 +59,13 @@ function selectSocket(evt) {
 }
 
 function render() {
-  for (i = 0; i < sockets.length; i++) {
-    if (sockets[i] === -1) socketEls[i].style.backgroundColor = 'lime';
-    if (sockets[i] === 1) socketEls[i].style.backgroundColor = 'orange';
-    if (!sockets[i]) socketEls[i].style.backgroundColor = '';
+  for (r = 0; r < sockets.length; r++) {
+    if (sockets[r] === -1) socketEls[r].style.backgroundColor = 'lime';
+    if (sockets[r] === 1) socketEls[r].style.backgroundColor = 'orange';
+    if (!sockets[r]) socketEls[r].style.backgroundColor = '';
+    if (victory.vicInds.indexOf(r) !== -1) {
+      socketEls[r].style.backgroundColor = 'maroon';
+    }
   }
 }
 
@@ -77,7 +80,7 @@ function erectColumns() {
 }
 
 function getWinner() {
-  let bound = sockets.length - 6;
+  let bound = sockets.length - 7;
   for (i = sockets.length - 1; i >= 0; i--) {
     if (sockets[i]) {
       // check winner horizontally
@@ -100,13 +103,21 @@ function getWinner() {
 }
 
 function checkTetrad(idx, tetrad) {
+  if (victory.vicInds.length === 4) return;
   let counter = 0;
   for (q = 0; q < tetrad.length; q++) {
     if (sockets[idx] === sockets[idx - tetrad[q]]) {
+      let pcIdx = idx - tetrad[q];
+      victory.vicInds.push(pcIdx);
       counter++;
-      if (counter === 3) return victory.winner = turn;
+      if (counter === 3) {
+        victory.vicInds.push(idx);
+        victory.winner = turn;
+        return;
+      }
     }
   }
+  victory.vicInds = [];
 }
 
 function reset() {
