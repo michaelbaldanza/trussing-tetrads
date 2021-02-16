@@ -97,8 +97,8 @@ function getWinner() {
       // check winner on right diagonal
       const rightDiagonal = [18, 12, 6];
       checkTetrad(i, rightDiagonal);
-      if (bound === i) bound -= 7;
     }
+    if (bound === i) bound -= 7;
   }
 }
 
