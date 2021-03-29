@@ -60,8 +60,8 @@ function selectSocket(evt) {
 
 function render() {
   for (r = 0; r < sockets.length; r++) {
-    if (sockets[r] === -1) socketEls[r].style.backgroundColor = 'lime';
-    if (sockets[r] === 1) socketEls[r].style.backgroundColor = 'orange';
+    if (sockets[r] === -1) socketEls[r].style.backgroundColor = '#d8e2dc';
+    if (sockets[r] === 1) socketEls[r].style.backgroundColor = '#fec89a';
     if (!sockets[r]) socketEls[r].style.backgroundColor = '';
     if (victory.vicInds.indexOf(r) !== -1) {
       socketEls[r].style.backgroundColor = 'maroon';
