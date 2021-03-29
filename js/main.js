@@ -33,6 +33,8 @@ function init() {
 function createGrid() {
   for (i = 0; i < sockets.length; i++) {
     let newSocket = document.createElement('div');
+    let strike = document.createElement('div');
+    newSocket.appendChild(strike);
     newSocket.setAttribute('class', 'socket')
     newSocket.setAttribute('id', i.toString());
     newSocket.addEventListener('click', selectSocket);
@@ -60,11 +62,16 @@ function selectSocket(evt) {
 
 function render() {
   for (r = 0; r < sockets.length; r++) {
-    if (sockets[r] === -1) socketEls[r].style.backgroundColor = '#d8e2dc';
-    if (sockets[r] === 1) socketEls[r].style.backgroundColor = '#fec89a';
+    let strike = socketEls[r].firstChild;
+    if (strike.hasAttribute('class')) strike.removeAttribute('class');
+    // if (sockets[r] === -1) socketEls[r].style.backgroundColor = '#d8e2dc';
+    // if (sockets[r] === 1) socketEls[r].style.backgroundColor = '#fec89a';
+    if (sockets[r] === -1) socketEls[r].style.backgroundColor = '#caffbf';
+    if (sockets[r] === 1) socketEls[r].style.backgroundColor = '#9bf6ff';
     if (!sockets[r]) socketEls[r].style.backgroundColor = '';
     if (victory.vicInds.indexOf(r) !== -1) {
-      socketEls[r].style.backgroundColor = 'maroon';
+      // socketEls[r].style.backgroundColor = 'maroon';
+      strike.setAttribute('class', 'strike');
     }
   }
 }

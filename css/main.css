@@ -3,7 +3,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #fec5bb;
+  /* background-color: #fec5bb; */
+  background-color: #ffadad;
 }
 
 #grid {
@@ -22,13 +23,37 @@ h1 {
   text-align: center;
 }
 
-div {
+section {
+}
+
+.socket {
   min-width: 3em;
   min-height: 3em;
   margin: 0.5em;
   border: solid black 0.01em;
   border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
+.strike {
+  width: 140%;
+  height: 2px;
+  background: black;
+}
+
+/* .strike:after {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 1px;
+  background: #c00;
+  content: "";
+  width: 100%;
+  display: block;
+} */
 
 @media screen and (max-width: 480px) {
   h1 span {
@@ -48,3 +73,4 @@ div {
     margin: 0.2em;
   }
 }
+
