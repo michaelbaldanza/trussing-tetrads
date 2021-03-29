@@ -7,10 +7,14 @@ body {
   background-color: #ffadad;
 }
 
-#grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-}
+
+
+/* #grid {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 525px;
+  max-height: 525px;
+} */
 
 button {
   font-size: 1rem;
@@ -23,10 +27,13 @@ h1 {
   text-align: center;
 }
 
-section {
+#grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
 }
 
 .socket {
+  position: relative;
   min-width: 3em;
   min-height: 3em;
   margin: 0.5em;
@@ -38,22 +45,32 @@ section {
   align-items: center;
 }
 
-.strike {
-  width: 140%;
-  height: 2px;
+div[strike] {
+  position: absolute;
   background: black;
 }
 
-/* .strike:after {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  height: 1px;
-  background: #c00;
-  content: "";
-  width: 100%;
-  display: block;
-} */
+div[strike="horizontal"] {
+  width: 140%;
+  height: 2px;
+}
+
+div[strike="vertical"] {
+  height: 140%;
+  width: 2px;
+}
+
+div[strike="right-diagonal"] {
+  height: 200%;
+  width: 2px;
+  transform: rotate(0.125turn);
+}
+
+div[strike="left-diagonal"] {
+  height: 200%;
+  width: 2px;
+  transform: rotate(0.875turn);
+}
 
 @media screen and (max-width: 480px) {
   h1 span {
