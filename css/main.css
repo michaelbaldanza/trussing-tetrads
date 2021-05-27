@@ -59,23 +59,23 @@ div[strike] {
 }
 
 div[strike="horizontal"] {
-  width: 140%;
+  width: 134%;
   height: 2px;
 }
 
 div[strike="vertical"] {
-  height: 140%;
+  height: 133.3%;
   width: 2px;
 }
 
 div[strike="right-diagonal"] {
-  height: 200%;
+  height: 188.75%;
   width: 2px;
   transform: rotate(0.125turn);
 }
 
 div[strike="left-diagonal"] {
-  height: 200%;
+  height: 188.75%;
   width: 2px;
   transform: rotate(0.875turn);
 }
